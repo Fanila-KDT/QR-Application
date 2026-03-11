@@ -12,6 +12,20 @@ export class LoginService {
   username: string = '';
   constructor(private httpClient:HttpClient, private endpointService: LoginEndpointService,private alertService:AlertService) { }
 
+    async getTocken(): Promise<any> {
+    try {
+
+      const res = await firstValueFrom(
+        this.httpClient.get<any>(this.endpointService.GetTocken)
+      );
+      return res;
+    } catch (error) {
+      console.error('GetTocken error:', error);
+      this.alertService.triggerAlert('Token fetch failed. Please try again.', 4000, 'error');
+      return null;
+    }
+  }
+
   async checkLoginCredinals(loginData: Login): Promise<any> {
     try {
       const params = new HttpParams()

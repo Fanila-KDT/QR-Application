@@ -11,6 +11,7 @@ export class LoginEndpointService {
   requestPasswordReset: string = '';
   getCustomerList: string = '';
   checkTagCustomer: string = '';
+  GetTocken: string;
   
   constructor(endpoint: EndPointsService) {
     //Basic URL
@@ -22,5 +23,6 @@ export class LoginEndpointService {
     this.requestPasswordReset = apiHostingURL + "/requestPasswordReset";
     this.getCustomerList = apiHostingURL + "/getCustomerList";
     this.checkTagCustomer = apiHostingURL + "/checkTagCustomer";
+    this.GetTocken = apiHostingURL + "/getTocken";
   }
 }

@@ -115,7 +115,7 @@ export class LoginComponent {
     try {
       const res: any = await this.loginService.checkLoginCredinals(this.login);
 
-      localStorage.setItem('accessToken', res.accessToken);
+      //localStorage.setItem('accessToken', res.accessToken);
       localStorage.setItem('username', res.username);
       localStorage.setItem('user_id', this.login.user_id);
 
