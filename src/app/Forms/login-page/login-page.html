@@ -1,0 +1,108 @@
+<div class="background">
+  <div class="qr-container">
+   <h1><span class="highlight">Sign In</span></h1>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <br  *ngIf="errorMessage">
+    <form ngForm #LoginForm="ngForm" name="form" (ngSubmit)="LoginForm.form.valid && onSubmit(LoginForm)" novalidate>
+      <div class="form-group">
+        <label for="username">Username
+           <span class="required-star">*</span>
+        </label>
+        <input type="text" placeholder="Please enter Username" id="user_id" name="user_id" [(ngModel)]="login.user_id" class="form-control" [ngClass]="{'is-invalid': isUserIdInvalid}" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password
+           <span class="required-star">*</span>
+        </label>
+        <div class="position-relative">
+          <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Please enter Password" id="password" [(ngModel)]="login.password" class="form-control" [ngClass]="{'is-invalid': isPasswordInvalid}"/>
+          <button mat-icon-button  type="button" class="view-btn"  (click)="togglePassword()" >
+            <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <div class="auth-links">
+      <button class="auth-button forgot" type="button" (click)="navigateToForgot()">Forgot Password?</button>
+      <!-- <span class="divider">|</span>
+      <button class="auth-button signup" (click)="navigateToSignup()">Sign Up</button> -->
+    </div>
+  </div>
+</div>
+
+<div class="signup-modal" *ngIf="showSignupModal">
+  <div class="signup-backdrop"></div>
+  <div class="signup-content" (click)="$event.stopPropagation()">
+    <h2>Create Your Account</h2>
+    <div *ngIf="errorMessageSignUp" class="error-message">
+      {{ errorMessageSignUp }}
+    </div>
+     <br  *ngIf="errorMessageSignUp">
+    <form (ngSubmit)="onSignup()" #signupForm="ngForm">
+
+      <label>Username/Email 
+        <span class="required-star">*</span>
+      </label>
+      <input type="email" class="form-control" [(ngModel)]="loginSignUp.user_id" name="user_id"  id="user_id1" [ngClass]="{'is-invalid': isSignupUserIdInvalid}"/>
+
+      <label>Password 
+        <span class="required-star">*</span>
+      </label>
+      <input type="password" class="form-control" [(ngModel)]="loginSignUp.password" name="password"  id="password1" [ngClass]="{'is-invalid': isSignupPasswordInvalid}"/>
+
+      <label>Full Name 
+        <span class="required-star">*</span>
+      </label>
+      <input type="text" class="form-control" [(ngModel)]="loginSignUp.user_name" name="user_name"  id="user_name1" [ngClass]="{'is-invalid': isSignupNameInvalid}" />
+
+      <div class="user-type-group">
+        <label>User Type: </label>
+        <div class="radio-options">
+          <label>
+            <input type="radio" name="user_type" [(ngModel)]="loginSignUp.user_type" value="Employee"  id="user_type"  />
+            Employee
+          </label>
+          <label>
+            <input type="radio" name="user_type" [(ngModel)]="loginSignUp.user_type" value="Customer"  id="user_type1"  />
+            Customer
+          </label>
+        </div>
+      </div>
+
+      <label>Customer Name</label>
+      <ng-select class="form-control" [items]="CustomerList" bindLabel="name" bindValue="creditcustomerid" [(ngModel)]="loginSignUp.creditcustomerid"  [disabled]="loginSignUp.user_type === 'Employee'"
+        [ngClass]="{'is-invalid': isCustomerNameInvalid}" dropdownPanelClass="'black-dropdown'" [ngModelOptions]="{ standalone: true }">
+      </ng-select>
+      <br>
+      <div class="signup-actions">
+        <button type="submit" class="signup-submit-btn">Sign Up</button>
+        <button type="button" class="signup-cancel-btn" (click)="cancelSignUp()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="signup-modal" *ngIf="showFrgtPassModal">
+  <div class="signup-backdrop"></div>
+  <div class="signup-content" (click)="$event.stopPropagation()">
+    <h2>Forgot Password</h2>
+    <div *ngIf="errorMessageFP" class="error-message">
+      {{ errorMessageFP }}  
+    </div>
+    <form [formGroup]="forgotForm" (ngSubmit)="onForgtPass()">
+      <label>Email
+        <span class="required-star">*</span>
+      </label>
+      <input formControlName="email" type="email" class="form-control"/>
+      <div class="signup-actions">
+        <button type="submit"class="signup-submit-btn">Send Reset Link</button>
+        <button type="button" class="signup-cancel-btn" (click)="cancelFPass()">Cancel</button>
+      </div>
+    </form>
+    <br>
+    <p *ngIf="message" class="info-message">{{ message }}</p>
+  </div>
+</div>

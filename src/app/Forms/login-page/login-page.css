@@ -1,0 +1,516 @@
+ Reset and prevent scrollbars
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/assets/img/login_bg.png'); 
+  background-repeat: no-repeat;                        
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 450px;
+  padding-bottom: 150px
+} 
+
+/* QR Container */
+.qr-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  width: 360px;
+  backdrop-filter: blur(8px);
+}
+
+/* Heading */
+.qr-container h1 {
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #00bcd4;
+}
+
+.highlight {
+  color: #00bcd4;
+}
+
+/* Error Message */
+.error-message {
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.info-message {
+  /* background-color: #d32f2f; */
+  color: #0de23b;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #0d4f63;
+}
+
+.required-star {
+  color: #ff6b6b;
+  margin-left: 4px;
+}
+
+/* Input Fields */
+.ng-select.form-control,
+input.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #0d4f63;
+  font-size: 14px;
+  outline: none;
+}
+.ng-select.form-control::placeholder
+{
+  color: #b0bec5 !important;
+}
+
+input.form-control::placeholder {
+  color: #b0bec5 !important;
+}
+
+.ng-select.form-control.is-invalid {
+  border-color: #ff6b6b;
+}
+
+input.form-control.is-invalid {
+  border-color: #ff6b6b;
+}
+
+/* Login Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #00bcd4, #2196f3);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #2196f3, #00bcd4);
+}
+
+/* Auth Links */
+.auth-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.auth-button {
+  background: none;
+  border: none;
+  color: #2196f3;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.auth-button:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  margin: 0 8px;
+  color: #060aec;
+}
+
+
+/* Modal Wrapper */
+.signup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Backdrop Layer */
+.signup-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+/* Modal Content */
+.signup-content {
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  width: 420px;
+  max-width: 90%;
+  z-index: 1001;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  animation: slideUp 0.5s ease;
+}
+
+/* Heading */
+.signup-content h2 {
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #50e2f5;
+}
+
+/* Labels and Inputs */
+.signup-content label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+
+.required-star {
+  color: #e70c0c;
+  margin-left: 4px;
+}
+
+.signup-content .ng-select.form-control,
+.signup-content input.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+}
+
+.signup-content .ng-select::placeholder,
+.signup-content input::placeholder {
+  color: #b0bec5;
+}
+
+.signup-content .ng-select.is-invalid ,
+.signup-content input.is-invalid {
+  border-color: #ff6b6b;
+}
+
+/* Radio Group */
+.user-type-group {
+  margin-bottom: 20px;
+}
+
+.radio-options {
+  display: flex;              /* place children side by side */
+  align-items: center;        /* vertical alignment */
+  gap: 20px;                  /* space between labels */
+}
+
+.radio-options label {
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;              /* keep radio + text aligned */
+  align-items: center;
+}
+
+.radio-options input[type="radio"] {
+  margin-right: 6px;
+}
+
+
+/* Buttons */
+.signup-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.signup-submit-btn,
+.signup-cancel-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signup-submit-btn {
+  background: linear-gradient(135deg, #00bcd4, #2196f3);
+  color: #ffffff;
+}
+
+.signup-submit-btn:hover {
+  background: linear-gradient(135deg, #2196f3, #00bcd4);
+}
+
+.signup-cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.signup-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Error Message */
+.error-message {
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.view-btn {
+  position: absolute;
+  top: 45%;
+  right: 8px;
+  transform: translateY(-45%);
+  z-index: 2;
+  color: #2196f3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/*-------------------------------------Aler Box Styles--------------------------------------------------*/
+/* Base snackbar style */
+::ng-deep .custom-snackbar {
+  color: #ffffff !important;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* Info Snackbar */
+::ng-deep .custom-snackbar.info {
+  background: linear-gradient(135deg, #1976d2, #21cbf3); /* Blue tones */
+}
+
+/* Success Snackbar */
+::ng-deep .custom-snackbar.success {
+  background: linear-gradient(135deg, #2e7d32, #66bb6a); /* Green tones */
+}
+
+/* Error Snackbar */
+::ng-deep .custom-snackbar.error {
+  background: linear-gradient(135deg, #d32f2f, #ef5350); /* Red tones */
+}
+
+/*--------------------------------------End Aler Box Styles--------------------------------------------------*/
+:host ::ng-deep .ng-dropdown-panel {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 1px solid #ffffff;
+  padding-left: 7px !important;
+}
+
+:host ::ng-deep .ng-dropdown-panel .ng-option {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+:host ::ng-deep .ng-dropdown-panel .ng-option-marked {
+  background-color: #333 !important;
+  color: #00bcd4 !important;
+}
+
+:host ::ng-deep .ng-dropdown-panel .ng-option-selected {
+  background-color: #222 !important;
+  color: #00bcd4 !important;
+}
+
+:host ::ng-deep .ng-dropdown-panel {
+  margin-top: 11px !important; 
+  margin-left: -11px !important; 
+}
+
+/* Show ban symbol only when disabled */
+:host ::ng-deep ng-select.ng-select-disabled .ng-select-container::after {
+  content: "🚫";        
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #ff3b30;             /* red */
+  pointer-events: none;
+}
+
+/* Optional: dim the field when disabled */
+:host ::ng-deep ng-select.ng-select-disabled .ng-select-container {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1024px) {
+  .background {
+    justify-content: center;        /* center content instead of pushing right */
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  .qr-container {
+    width: 300px;                   /* slightly smaller */
+    padding: 30px;
+  }
+
+  .qr-container h1 {
+    font-size: 32px;
+  }
+
+  .signup-content {
+    width: 360px;
+    padding: 30px;
+  }
+
+  .signup-content h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .background {
+    flex-direction: column;         /* stack vertically */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .qr-container {
+    width: 90%;                     /* take most of screen width */
+    padding: 20px;
+  }
+
+  .qr-container h1 {
+    font-size: 26px;
+  }
+
+  .signup-content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .signup-content h2 {
+    font-size: 24px;
+  }
+
+  .signup-actions {
+    flex-direction: column;         /* stack buttons vertically */
+  }
+
+  .signup-submit-btn,
+  .signup-cancel-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .qr-container {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .qr-container h1 {
+    font-size: 22px;
+  }
+
+  .signup-content {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .signup-content h2 {
+    font-size: 20px;
+  }
+
+  label, 
+  .signup-content label {
+    font-size: 12px;
+  }
+
+  input.form-control,
+  .ng-select.form-control {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .login-btn,
+  .signup-submit-btn,
+  .signup-cancel-btn {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+

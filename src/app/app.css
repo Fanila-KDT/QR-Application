@@ -1,0 +1,10 @@
+.floating-logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  height: 80px;
+  width: auto;
+  z-index: 9999;
+  pointer-events: none; /* prevents it from blocking clicks */
+  opacity: 0.9;
+}

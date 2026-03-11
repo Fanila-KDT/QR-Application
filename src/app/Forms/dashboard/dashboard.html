@@ -1,0 +1,73 @@
+<div class="container d-flex align-items-center justify-content-between">
+  <div class="user-info d-flex align-items-center">
+    <mat-icon>account_circle</mat-icon>
+    <span class="user-name">{{ user }}</span>
+  </div>
+
+  <h2 class="flex-grow-1 text-center">Customer Support</h2>
+
+  <button class="logout-button" (click)="logOut()" aria-label="Logout">
+    <span class="material-icons">logout</span>
+  </button>
+</div>
+
+
+
+<div class="background">
+  <div class="form-wrapper">
+    <form>
+      <div class="form-columns">
+        <!-- Read-only section -->
+        <fieldset class="readonly-section">
+          <legend>Device Information</legend>
+
+          <label for="tag_no">Tag No:</label>
+          <input type="text" id="tag_no" [(ngModel)]="dashboard.tag_no"  name="tag_no" class="form-input" disabled />
+
+          <label for="name">Customer Name:</label>
+          <input type="text" id="name" [(ngModel)]="dashboard.name" name="name" class="form-input" disabled />
+
+          <label for="item_code">Model:</label>
+          <input type="text" id="item_code" [(ngModel)]="dashboard.item_code" name="item_code" class="form-input" disabled />
+
+          <label for="serial_no">Serial Number:</label>
+          <input type="text" id="serial_no" [(ngModel)]="dashboard.serial_no" name="serial_no" class="form-input" disabled />
+        </fieldset>
+
+        <!-- Editable section -->
+        <fieldset class="editable-section">
+          <legend>Contact Details</legend>
+
+          <label for="mobile_no">Mobile Number:
+             <span class="required-star">*</span>
+          </label>
+          <input type="text" id="mobile_no" name="mobile_no" class="form-input"   [(ngModel)]="customerRequest.mobile_no"/>
+
+          <label for="contact_person">Contact Person:
+             <span class="required-star">*</span>
+          </label>
+          <input type="text" id="contact_person" name="contact_person" class="form-input"  [(ngModel)]="customerRequest.contact_person" />
+
+          <label for="remarks">Type of Request:
+             <span class="required-star">*</span>
+          </label>
+          <div class="checkbox-group-horizontal" id="request_type">
+            <label>
+              <input type="checkbox" [value]="'Repair Request'" [(ngModel)]="customerRequest.Repair" name="Repair"> Repair Request
+            </label>
+            <label>
+              <input type="checkbox" [value]="'Toner Order'" [(ngModel)]="customerRequest.Refill" name="Refill"> Toner Order
+            </label>
+            <label>
+              <input type="checkbox" [value]="'Other Complaints'" [(ngModel)]="customerRequest.Other" name="Other"> Other Complaints
+            </label>
+          </div>
+          <label for="remarks">Remarks:</label>
+          <textarea id="remarks" name="remarks" rows="3" class="form-input"  [(ngModel)]="customerRequest.remarks"></textarea>
+
+          <button  (click)="submitRequest()" class="submit-button"  [disabled]="SubmitDisable">Submit Request</button>
+        </fieldset>
+      </div>
+    </form>
+  </div>
+</div>

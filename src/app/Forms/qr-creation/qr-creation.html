@@ -1,0 +1,100 @@
+
+<div class="container">
+  <div class="user-info d-flex align-items-center">
+    <mat-icon>account_circle</mat-icon>
+    <span class="user-name">{{ user }}</span>
+  </div>
+  <h2>QR Code Generation</h2>
+   <button class="logout-button" (click)="logOut()" label="Logout">
+    <span class="material-icons">logout</span> 
+  </button>
+</div>
+
+<div class="header">
+  <div class="form-container">
+    <legend>Tag Information</legend>
+    <br *ngIf="errorMessage">
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <label for="tag_no">Tag No:</label>
+    <div class="form-row">
+      <input type="text" class="form-input" id="tag_no" 
+        name="tag_no"  [(ngModel)]="tagMaster.tag_no" #tag_no="ngModel"  placeholder="Enter Tag Number">
+        <button type="button" class="btn search"  (click)="searchTagDetails()">
+            <i class="fa fa-search me-1"></i> 
+        </button>
+    </div>
+    <label for="serial_no">Serial Number:</label>
+    <input type="text" class="form-input" placeholder="Serial Number" [(ngModel)]="tagMaster.serial_no" disabled>
+    <label for="name">Name:</label>
+    <input type="text" class="form-input" placeholder="Name" [(ngModel)]="tagMaster.name" disabled>
+    <label for="item_code">Item Code:</label>
+    <input type="text" class="form-input" placeholder="Item Code" [(ngModel)]="tagMaster.item_code" disabled>
+    <button class="submit-button" (click)="generateQRCode()" [disabled]="tagMaster.tag_no.invalid">GENERATE QR</button>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="qrCodeBase64">
+  <div class="modal-content">
+    <div id="poster">
+      <div class="qr-poster">
+        <img src="../../../assets/img/kdt_logo.jpg" alt="KDT Logo" class="logo" />
+        <p class="tag">TAG : {{ tagMaster.tag_no }}</p>
+
+        <div class="qr-box">
+          <img [src]="qrCodeBase64" alt="QR Code" />
+        </div>
+        <div class="contact-info">
+          <h3>فتح كاميرا الهاتف لطلب الصيانة</h3>
+          <p>لمزيد من التفاصيل يرجى الاتصال</p>
+          <p>For more details, please contact</p>
+          <p>📞 2221 0500 | 📧 helpdesk@kdt.com.kw</p>
+          <p>🌐 www.KDT.com.kw</p>
+        </div>
+      </div>
+    </div>
+    <div class="button-row">
+      <button class="download-button" (click)="downloadPoster()">Download Qrcode</button>
+      <button class="close-button" (click)="qrCodeBase64 = null">Close</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modalGovt-overlay" *ngIf="qrCodeBase64Gov">
+  <div class="modalGovt-content horizontal">
+    <div class="qr-poster-horizontal"  id="posterGovt">
+      <!-- Left: Logo and QR -->
+      <div class="leftGovt">
+        <img src="../../../assets/img/kdt_logo.jpg" alt="KDT Logo" class="logo" />
+        <h3 class="ctaGovt">فتح كاميرا الهاتف لطلب الصيانة</h3>
+        <div class="contactGovt-info">
+          <p><strong>لمزيد من التفاصيل يرجى الاتصال:</strong></p>
+          <p>For more details, please contact:</p>
+          <p>📞 2221 0500</p>
+          <p>📞 24829073 - شكاوى وزارة الداخلية</p>
+        </div>
+      </div>
+
+      <!-- Right: Contract and Contact Info -->
+      <div class="rightGovt">
+        <div class="contractGovt-details">
+           <p class="tag">TAG : {{ tagMaster.tag_no }}</p>
+           <div class="qrGovt-box">
+              <img [src]="qrCodeBase64Gov" alt="QR Code" />
+            </div>
+          <p><strong>رقم العقد:</strong> {{ContractNo}}</p>
+          <p><strong>تاريخ العقد : من</strong> {{warranty_startdate}}</p>
+          <p><strong>إلى:</strong> {{warranty_enddate}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="buttonGovt-row">
+      <button class="download-button" (click)="downloadPosterGovt()">Download QR Code</button>
+      <button class="close-button" (click)="qrCodeBase64Gov = null">Close</button>
+    </div>
+  </div>
+</div>

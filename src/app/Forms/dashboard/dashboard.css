@@ -1,0 +1,388 @@
+/*----------------------------Global styles------------------------------------*/
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  padding: 40px 16px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 4px;
+  color: #1e3a8a;
+}
+
+p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/*----------------------------Form layout------------------------------------*/
+.form-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #edf5f7;
+  padding: 52px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form-columns {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.readonly-section,
+.editable-section {
+  flex: 1 1 400px;
+  min-width: 280px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 24px;
+  background-color: #f9fafb;
+}
+
+legend {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f0f2f5;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+  margin-bottom: 16px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #2563eb;
+}
+
+input[disabled] {
+  background-color: #e5e7eb;
+  color: #6b7280;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/*----------------------------Buttons------------------------------------*/
+.submit-button,
+.download-button,
+.close-button {
+  padding: 12px 16px;
+  background:linear-gradient(135deg, #2196f3, #00bcd4);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.submit-button:hover,
+.download-button:hover,
+.close-button:hover {
+  background:linear-gradient(135deg, #7eafd6, #8dd7e0);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* spacing between icon and name */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.user-info mat-icon {
+  font-size: 26px;
+  color: #ffffff; /* Material blue or customize to match your theme */
+}
+
+.user-name {
+  color: #ffffff; 
+}
+
+
+/*----------------------------Search button------------------------------------*/
+.btn.search {
+  padding: 3px 16px;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  height: 45px;
+}
+
+.btn.search:hover {
+ background:linear-gradient(135deg, #7eafd6, #8dd7e0);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.btn.search i {
+  font-size: 16px;
+  margin-right: 6px;
+}
+
+/*----------------------------Error Message------------------------------------*/
+.error-message {
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/*----------------------------Modal styles------------------------------------*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+  position: relative;
+}
+
+.modal-content a {
+  display: block;
+  margin: 16px 0 8px;
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.modal-content a:hover {
+  text-decoration: underline;
+}
+
+/*----------------------------QR Poster styles------------------------------------*/
+.qr-poster {
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.logo {
+  width: 250px;
+  height: 100px;
+  margin-bottom: 12px;
+}
+
+.tag {
+  font-size: 30px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 16px;
+}
+
+.qr-box img {
+  max-width: 200px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.contact-info {
+  margin-top: 16px;
+}
+
+.contact-info h3 {
+  background-color: #f2f2f2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #0f1c38;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.contact-info p {
+  font-size: 13px;
+  margin: 4px 0;
+  color: #444;
+  line-height: 1.4;
+}
+
+/*----------------------------Responsive tweaks------------------------------------*/
+@media (max-width: 480px) {
+  .form-columns {
+    flex-direction: column;
+  }
+
+  .modal-content {
+    padding: 16px;
+  }
+
+  .qr-box img {
+    max-width: 160px;
+  }
+
+  .logo {
+    max-width: 80px;
+    height: auto;
+  }
+}
+ /*----------------------------Logout Button------------------------------------*/
+ 
+.container {
+  width: 100vw;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+  background:linear-gradient(135deg, #0e3453, #10626d, #2196f3, #0e3453);
+  display: flex;
+  justify-content: center; /* center heading */
+  align-items: center;
+  position: relative;
+}
+
+.container h2 {
+  color: #ffffff;
+  font-size: 28px;
+  margin: 0 auto;
+  text-align: center;
+  flex: 1;
+}
+
+.logout-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #dd121c;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #ce4c57;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.logout-button .material-icons {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.checkbox-group-horizontal {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  align-items: center;
+      background-color: #f0f2f5;
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 5%);
+}
+
+.checkbox-group-horizontal label {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+/*-------------------------------------Aler Box Styles--------------------------------------------------*/
+/* Base snackbar style */
+::ng-deep .custom-snackbar {
+  color: #ffffff !important;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* Info Snackbar */
+::ng-deep .custom-snackbar.info {
+  background: linear-gradient(135deg, #1976d2, #21cbf3); /* Blue tones */
+}
+
+/* Success Snackbar */
+::ng-deep .custom-snackbar.success {
+  background: linear-gradient(135deg, #2e7d32, #66bb6a); /* Green tones */
+}
+
+/* Error Snackbar */
+::ng-deep .custom-snackbar.error {
+  background: linear-gradient(135deg, #d32f2f, #ef5350); /* Red tones */
+}
+
+.required-star {
+  color: #ff6b6b;
+  margin-left: 4px;
+}
+
+.submit-button:disabled {
+  background:linear-gradient(135deg, #2c8edf, #35d5eb);      /* Greyed out background */
+  color: #fff;                /* Dimmed text color */
+  cursor: not-allowed;         /* Show "not allowed" cursor */
+  opacity: 0.7;                /* Slight transparency */
+  border: 1px solid #999;      /* Subtle border */
+}
