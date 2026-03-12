@@ -1,6 +1,6 @@
  
 .container {
-  width: 100vw;
+  width: 63vw;
   padding: 1rem 1rem;
   box-sizing: border-box;
   background: linear-gradient(135deg, #0e3453, #10626d, #2196f3, #0e3453);
@@ -512,3 +512,4 @@ label {
 ::ng-deep .custom-snackbar.error {
   background: linear-gradient(135deg, #d32f2f, #ef5350); /* Red tones */
 }
+

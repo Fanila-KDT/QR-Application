@@ -281,7 +281,7 @@ textarea {
  /*----------------------------Logout Button------------------------------------*/
  
 .container {
-  width: 100vw;
+  width: 62vw;
   padding: 1rem 1rem;
   box-sizing: border-box;
   background:linear-gradient(135deg, #0e3453, #10626d, #2196f3, #0e3453);

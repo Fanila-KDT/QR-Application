@@ -12,11 +12,11 @@ export class LoginService {
   username: string = '';
   constructor(private httpClient:HttpClient, private endpointService: LoginEndpointService,private alertService:AlertService) { }
 
-    async getTocken(): Promise<any> {
+    async getTocken(user_id:any): Promise<any> {
     try {
 
       const res = await firstValueFrom(
-        this.httpClient.get<any>(this.endpointService.GetTocken)
+        this.httpClient.get<any>(this.endpointService.GetTocken + '/' + user_id)
       );
       return res;
     } catch (error) {
@@ -91,7 +91,7 @@ export class LoginService {
     return this.httpClient.post<void>(url, { email });
   }
 
-    async GetCustomerList(): Promise<any[]> {
+  async GetCustomerList(): Promise<any[]> {
     const message = 'Something went wrong while fetching Customer List. Please try again.';
     try {
       return await lastValueFrom(

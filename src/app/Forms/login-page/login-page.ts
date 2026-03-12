@@ -47,63 +47,7 @@ export class LoginComponent {
     this.route.queryParamMap.subscribe(params => {
       this.encryptedTag =  params.get('tag');
     });
-    this.CustomerList = await this.loginService.GetCustomerList();
   }
-
-  // async onSubmit(LoginForm: any) {
-  //   const isValid = await this.validateForm(this.login);
-  //   if (!isValid) {
-  //     this.errorMessage = 'Pleease fill in all required fields correctly';
-  //     return;
-  //   }
-  //   this.loginService.checkLoginCredinals(this.login).then((res: any) => {
-  //    localStorage.setItem('username', res.username);
-  //    localStorage.setItem('user_id', this.login.user_id);
-
-  //     if (res.message !== 'Valid') {
-  //       this.errorMessage = 'Invalid User ID or Password';
-  //       return;
-  //     }
-  //     if (res.inactive) {
-  //       this.errorMessage = 'Your account is inactive. Please contact support';
-  //       return;
-  //     }
-
-  //     // 🔑 Wait for tag check before continuing
-  //     if (this.encryptedTag) {
-  //       const tagNumber = this.encryptionService.decryptTag(this.encryptedTag);
-  //       const result: any = await this.loginService.checkTagCustomer(res.creditcustomerid, tagNumber);
-  //       this.status = result?.message;
-
-  //       if (this.status !== 'Valid') {
-  //         this.errorMessage = 'xxxxxxxxxxxxxxxxxxxxxxx';
-  //         return;
-  //       }
-  //     }
-
-  //     this.errorMessage = '';
-  //     if(res.userType === 'Employee'){
-  //       this.ngZone.run(() => {
-  //         this.router.navigate(['/qr-creation']);
-  //       });
-  //     } 
-  //     else if(res.userType === 'Customer'){
-  //       if(!this.encryptedTag) {
-  //         this.errorMessage = 'Unauthorized access. Please contact Administrator';
-  //         return;
-  //       }
-  //       this.authService.login('valid');
-  //       this.ngZone.run(() => {
-  //         this.router.navigate(['/dashboard'], { queryParams: { tagNumber: this.encryptedTag } });
-  //       });
-  //     }
-  //     else{
-  //       this.errorMessage = 'Unknown User type';
-  //     }
-  //   }).catch(error => {
-  //     console.error('Something went wrong:', error);
-  //   });
-  // }
 
   async onSubmit(LoginForm: any) {
     const isValid = await this.validateForm(this.login);
@@ -114,8 +58,9 @@ export class LoginComponent {
 
     try {
       const res: any = await this.loginService.checkLoginCredinals(this.login);
+      const token: any = await this.loginService.getTocken(this.login.user_id);
+      localStorage.setItem('accessToken', token.accessToken);
 
-      //localStorage.setItem('accessToken', res.accessToken);
       localStorage.setItem('username', res.username);
       localStorage.setItem('user_id', this.login.user_id);
 
@@ -158,6 +103,7 @@ export class LoginComponent {
           this.router.navigate(['/dashboard'], { queryParams: { tagNumber: this.encryptedTag } });
         });
       } else {
+        this.CustomerList = await this.loginService.GetCustomerList();
         this.showSignupModal = true;
       }
     } catch (error) {

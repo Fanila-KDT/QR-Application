@@ -12,7 +12,8 @@ export class App {
   constructor(public loginService: LoginService){}
 
   async ngOnInit(){
-    const res: any = await this.loginService.getTocken();
-    localStorage.setItem('accessToken', res.accessToken);
+    //const res: any = await this.loginService.getTocken();
+    //localStorage.setItem('accessToken', res.accessToken);
+    //console.log(res.accessToken)
   }
 }
