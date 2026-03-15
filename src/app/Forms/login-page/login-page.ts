@@ -167,6 +167,9 @@ export class LoginComponent {
       return;
     }
     
+    if(this.loginSignUp.user_type === 'Employee'){
+      this.loginSignUp.creditcustomerid = null;
+    }
 
     this.loginService.SaveSignUpData(this.loginSignUp).then((res: string | null | undefined) => {
     if (res) {
